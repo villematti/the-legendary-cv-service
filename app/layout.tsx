@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+import { Inter, IBM_Plex_Serif } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const ibmPlexSerif = IBM_Plex_Serif({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-ibm-plex-serif",
+});
 
 export const metadata: Metadata = {
   title: "Legendary CV Service",
@@ -20,10 +20,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body className="antialiased">{children}</body>
-      </html>
-    </ClerkProvider>
+    <html lang="en">
+      <body className={`${inter.className} ${ibmPlexSerif.variable}`}>
+        {children}
+      </body>
+    </html>
   );
 }
