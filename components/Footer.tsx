@@ -16,10 +16,9 @@ const Footer = ({ user, type = "desktop" }: FooterProps) => {
           {user?.email}
         </p>
       </div>
-      <div
-        className="footer_image"
-        onClick={() => console.log("Should logout")}
-      ></div>
+      <div className="footer_image" onClick={() => console.log("Logout")}>
+        <Image src="icons/logout.svg" fill alt="Logout" />
+      </div>
     </footer>
   );
 };

@@ -18,7 +18,8 @@ export default async function RootLayout({
 
       <div className="flex size-full flex-col">
         <div className="root-layout">
-          <Image alt="logo" height={30} src={"/icons/logo.svg"} width={30} />
+          {/* <Image alt="logo" height={30} src={"/icons/logo.svg"} width={30} /> */}
+          <h1 className="font-bold text-black-1">Legendary CV Service</h1>
           <div>
             <MobileNav user={loggedIn} />
           </div>

@@ -32,11 +32,9 @@ const MobileNav = ({ user }: MobileNavProps) => {
             className="flex cursor-pointer items-center gap-1 px-4"
             href="/"
           >
-            <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">
-              Legendary CV Service
-            </h1>
+            <h1 className="font-bold text-black-1">Legendary CV Service</h1>
           </Link>
-          <div className="mobile-nav-sheet">
+          <div className="mobile-nav-sheet h-[calc(100vh-185px)]">
             <SheetClose asChild>
               <nav className="flex h-full flex-col gap-6 pt-16 text-white">
                 {sidebarLinks.map((item) => {
