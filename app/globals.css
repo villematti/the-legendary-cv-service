@@ -146,6 +146,14 @@
     @apply text-16 font-normal text-gray-600;
   }
 
+  .footer_image {
+    @apply relative size-5 max-xl:w-full max-xl:flex max-xl:justify-center max-xl:items-center;
+  }
+
+  .footer_image-mobile {
+    @apply relative size-5;
+  }
+
   /* Category Badge */
   .category-badge {
     @apply flex-center truncate w-fit gap-1 rounded-2xl border-[1.5px] py-[2px] pl-1.5 pr-2;
