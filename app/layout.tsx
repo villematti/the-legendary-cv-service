@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, IBM_Plex_Serif } from "next/font/google";
 import "./globals.css";
+import { redirect } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const ibmPlexSerif = IBM_Plex_Serif({
@@ -11,7 +12,10 @@ const ibmPlexSerif = IBM_Plex_Serif({
 
 export const metadata: Metadata = {
   title: "Legendary CV Service",
-  description: "The Legendary CV Service",
+  description: "Legendary CV Service Tailored to Job Description",
+  icons: {
+    icon: "/icons/logo.svg",
+  },
 };
 
 export default function RootLayout({
