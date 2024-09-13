@@ -6,8 +6,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Footer from "./Footer";
+import { SiderbarProps } from "@/types";
 
-const Sidebar = ({ user }: SiderbarProps) => {
+const Sidebar: React.FC<SiderbarProps> = ({ user }) => {
   const pathname = usePathname();
   return (
     <section className="sidebar">

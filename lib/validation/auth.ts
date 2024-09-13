@@ -10,13 +10,6 @@ export const authFormSchema = z.object({
 const userDetailsSchema = z.object({
   firstName: stringSchema.min(2),
   lastName: stringSchema.min(2),
-  address1: stringSchema.min(3, {
-    message: "Minimum of 3 characters",
-  }),
-  state: stringSchema.min(2).max(2),
-  postalCode: stringSchema.min(3).max(6),
-  dateOfBirth: stringSchema.min(3),
-  city: stringSchema.min(2),
   confirmPassword: stringSchema.min(5, {
     message: "Minimum of 5 characters",
   }),

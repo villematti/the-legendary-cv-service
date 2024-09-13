@@ -36,31 +36,6 @@ export const fieldArgs: FieldArgs<AuthenticationForm> = {
     name: "lastName",
     type: "text",
   },
-  address1: {
-    name: "address1",
-    type: "text",
-  },
-  state: {
-    className: "cols-span-1",
-    name: "state",
-    type: "text",
-  },
-  postalCode: {
-    className: "cols-span-1",
-    name: "postalCode",
-    type: "text",
-  },
-  dateOfBirth: {
-    className: "cols-span-1",
-    label: "Date of Birth",
-    name: "dateOfBirth",
-    type: "text",
-    placeholder: "YYYY-MM-DD",
-  },
-  city: {
-    name: "city",
-    type: "text",
-  },
 };
 
 export const signInFieldOrder = without(fieldOrder, ...toRemove);

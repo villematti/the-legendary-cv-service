@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { redirect } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
@@ -15,11 +16,6 @@ import {
 } from "@/form-fields/auth";
 
 import { Loader2 } from "lucide-react";
-import { auth } from "@/lib/firebase/clientApp";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
 import {
   authFormSchema,
   extendedSchema,
@@ -27,6 +23,7 @@ import {
 } from "@/lib/validation/auth";
 import { FieldBase } from "@/types";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/hooks/useAuth";
 
 type AuthFormProps = {
   type: string;
@@ -34,6 +31,7 @@ type AuthFormProps = {
 
 const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
   const router = useRouter();
+  const { signin, signup } = useAuth();
   const isTypeSignIn: boolean = type === "sign-in";
   const extendedFieldOrder = isTypeSignIn ? signInFieldOrder : signUpFieldOrder;
   const extendedAuthSchema = isTypeSignIn ? authFormSchema : extendedSchema;
@@ -45,10 +43,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
       password: "",
       firstName: "",
       lastName: "",
-      address1: "",
-      state: "",
-      postalCode: "",
-      dateOfBirth: "",
+      confirmPassword: "",
     },
     mode: "onTouched",
   });
@@ -57,35 +52,18 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
     control,
     handleSubmit,
     formState: { isSubmitting },
+    reset,
   } = form;
 
   const onSubmit: SubmitHandler<AuthenticationForm> = async (data) => {
     const { email, password } = data as keyof AuthenticationForm;
-    try {
-      if (type === "sign-in") {
+    if (type === "sign-in") {
+      await signin(email, password);
+    }
+    if (type === "sign-up") {
+      await signup(email, password).then((data) => {
         console.log({ data });
-        const response = await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        if (response) {
-          console.log({ response });
-        }
-      }
-      if (type === "sign-up") {
-        console.log({ data });
-        const response = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        if (response) {
-          console.log({ response });
-        }
-      }
-    } catch (error) {
-      console.log({ error });
+      });
     }
   };
 
