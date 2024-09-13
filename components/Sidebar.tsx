@@ -6,12 +6,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Footer from "./Footer";
+import { SiderbarProps } from "@/types";
 
-const Sidebar = ({ user }: SiderbarProps) => {
+const Sidebar: React.FC<SiderbarProps> = ({ user }) => {
   const pathname = usePathname();
   return (
     <section className="sidebar">
-      <nav className="flex flex-col gap-4">
+      <nav className="flex flex-col">
         <Link className="flex mb-12 cursor-pointer items-center gap-2" href="/">
           <h1 className="sidebar-logo">Legendary CV Service</h1>
         </Link>
@@ -21,9 +22,19 @@ const Sidebar = ({ user }: SiderbarProps) => {
           return (
             <Link
               key={item.label}
-              className={cn("sidebar-link", { "bg-bank-gradient": isActive })}
+              className={cn("sidebar-link border-b border-b-slate-200", {
+                "bg-bank-gradient": isActive,
+              })}
               href={item.route}
             >
+              <div className="relative size-4">
+                <Image
+                  fill
+                  alt={item.label}
+                  className={cn({ "brightness-[3] invert-0": isActive })}
+                  src={item.imgURL}
+                />
+              </div>
               <p
                 className={cn("sidebar-label", {
                   "!text-white": isActive,

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, IBM_Plex_Serif } from "next/font/google";
 import "./globals.css";
+import { AuthProvider } from "@/hooks/useAuth";
+
+import Toast from "@/components/ToastContainer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const ibmPlexSerif = IBM_Plex_Serif({
@@ -11,7 +14,10 @@ const ibmPlexSerif = IBM_Plex_Serif({
 
 export const metadata: Metadata = {
   title: "Legendary CV Service",
-  description: "The Legendary CV Service",
+  description: "Legendary CV Service Tailored to Job Description",
+  icons: {
+    icon: "/icons/logo.svg",
+  },
 };
 
 export default function RootLayout({
@@ -22,7 +28,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} ${ibmPlexSerif.variable}`}>
-        {children}
+        <AuthProvider>{children}</AuthProvider>
+        <Toast />
       </body>
     </html>
   );

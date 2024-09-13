@@ -1,8 +1,9 @@
+import { FooterProps } from "@/types";
 import Image from "next/image";
 
-const Footer = ({ user, type = "desktop" }: FooterProps) => {
+const Footer: React.FC<FooterProps> = ({ user, type = "desktop" }) => {
   return (
-    <footer className="footer">
+    <footer className="footer p-4">
       <div className={type === "mobile" ? "footer_name-mobile" : "footer_name"}>
         <p className="text-xl font-bold text-gray-700">{user?.firstName[0]}</p>
       </div>
